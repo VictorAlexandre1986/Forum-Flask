@@ -11,4 +11,3 @@ class Usuario(Base):
     dt_nasc = Column(Datetime, nullable=False)
     email = Column(String, nullable=False)
     celular = Column(String, nullable=False)
-    pontuacao = Column(Integer, nullable=False)

@@ -16,13 +16,12 @@ class UsuarioRepository(UsuarioRepositoryInterface):
             dt_nasc=usuario.dt_nasc,
             email = usuario.email,
             celular = usuario.celular,
-            pontuacao = usuario.pontuacao,
         )
 
-    def criar_usuario(self, uuid: uuid, nome_completo: str, dt_nasc: datetime, email: str, celular: str, pontuacao: int ):
+    def criar_usuario(self, uuid: uuid, nome_completo: str, dt_nasc: datetime, email: str, celular: str):
         try:
             with DBConnectionHandler() as db_connection:
-                novo_usuario = Usuario( uuid=uuid, nome_completo=nome_completo, dt_nasc=dt_nasc, email=email, celular=celular, pontuacao=pontuacao)
+                novo_usuario = Usuario( uuid=uuid, nome_completo=nome_completo, dt_nasc=dt_nasc, email=email, celular=celular)
                 db_connection.session.add(novo_usuario)
                 db_connection.session.commit()
                 return self._criar_usuario_objeto(novo_usuario)
@@ -46,7 +45,7 @@ class UsuarioRepository(UsuarioRepositoryInterface):
                 )
             return list_usuarios
         
-    def atualizar_usuario(self, id: int, nome_completo: str, dt_nasc: datetime, email: str, celular: str, pontuacao: int ):
+    def atualizar_usuario(self, id: int, nome_completo: str, dt_nasc: datetime, email: str, celular: str ):
         with DBConnectionHandler() as db_connection:
             data = db_connection.session.query(Usuario).filter(Usuario.id == id).one_or_none()
             if data:
@@ -54,8 +53,6 @@ class UsuarioRepository(UsuarioRepositoryInterface):
                 data.dt_nasc = dt_nasc
                 data.email = email
                 data.celular = celular 
-                data.pontuacao = pontuacao
-                
                 db_connection.session.commit()
                 return self._criar_usuario_objeto(data)
             return None

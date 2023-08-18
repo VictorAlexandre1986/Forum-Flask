@@ -8,4 +8,3 @@ class UsuarioDTO(BaseModel):
     dt_nasc  : Datetime
     email : str
     celular : str
-    pontuacao : int

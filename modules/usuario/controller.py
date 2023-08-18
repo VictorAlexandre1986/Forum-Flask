@@ -10,7 +10,7 @@ class UsuarioController:
     def criar_usuario(data: dict):
         data_dto = UsuarioDTO(**data)
         repository = UsuarioRepository()
-        result = UsuarioUseCase(repository).criar_usuario(nome_completo = data_dto.nome_completo, dt_nasc = data_dto.dt_nasc, email= data_dto.email, celular= data_dto.celular, pontuacao= data_dto.pontuacao)
+        result = UsuarioUseCase(repository).criar_usuario(nome_completo = data_dto.nome_completo, dt_nasc = data_dto.dt_nasc, email= data_dto.email, celular= data_dto.celular)
         return result
     
     @staticmethod
@@ -30,7 +30,7 @@ class UsuarioController:
     def atualizar_usuario(data: dict, id: int):
         data_dto = UsuarioDTO(**data)
         repository = UsuarioRepository()
-        result = UsuarioUseCase(repository).atualizar_usuario(nome_completo = data_dto.nome_completo, dt_nasc = data_dto.dt_nasc, email= data_dto.email, celular= data_dto.celular, pontuacao= data_dto.pontuacao)
+        result = UsuarioUseCase(repository).atualizar_usuario(nome_completo = data_dto.nome_completo, dt_nasc = data_dto.dt_nasc, email= data_dto.email, celular= data_dto.celular)
         return result
     
     @staticmethod

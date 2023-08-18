@@ -9,4 +9,3 @@ class UsuarioDTO(BaseModel):
     confirmacao_senha : str
     email : str
     celular : str
-    pontuacao : int
