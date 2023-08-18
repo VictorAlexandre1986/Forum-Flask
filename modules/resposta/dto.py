@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 
 class RespostaDTO(BaseModel):
-    usuario: str
+    id: int
+    id_usuario: int
     resposta: str
     contagem_voto: int    

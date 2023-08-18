@@ -19,3 +19,9 @@ class RespostaUseCase:
     
     def atualizar_resposta(self, username:str, resposta:str):
         return self.resposta_repository.atualizar_resposta(username, resposta)
+
+    def incrementar_pontuacao(self, id:int):
+        return self.resposta_repository.incrementar_pontuacao(id)
+
+    def decrementar_pontuacao(self, id: int):
+        return self.resposta_repository.decrementar_pontuacao(id)

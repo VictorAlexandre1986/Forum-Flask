@@ -21,3 +21,11 @@ class RespostaRepositoryInterface(ABC):
     @abstractmethod
     def deletar_resposta(self, id: int):
         raise Exception("Método não implementado")
+
+    @abstractmethod
+    def incrementar_pontuacao(self, id: int):
+        raise Exception("Método não implementado")
+
+    @abstractmethod
+    def decrementar_pontuacao(self, id: int):
+        raise Exception("Método não implementado")
