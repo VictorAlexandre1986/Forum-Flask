@@ -5,17 +5,17 @@ from flask import Response
 from flask_restx import Namespace, Resource
 from pydantic import ValidationError
 
-from modules.pergunta.controller import PerguntaController
+from modules.usuario.controller import UsuarioController
 
-api_buscar_pergunta = Namespace("pergunta", description="Endpoint buscar pergunta")
+api_buscar_usuario = Namespace("usuario", description="Endpoint buscar usuario")
 
 
-@api_buscar_pergunta.route("/<int:id>", methods=["GET"])
-class BuscarPerguntaPorId(Resource):
+@api_buscar_usuario.route("/<int:id>", methods=["GET"])
+class BuscarUsuarioPorId(Resource):
 
     def get(self, id: int):
         try:
-            response = PerguntaController.buscar_pergunta_por_id(id)
+            response = UsuarioController.buscar_usuario_por_id(id)
             return Response(
                 response.json(),
                 mimetype="application/json",
@@ -46,12 +46,12 @@ class BuscarPerguntaPorId(Resource):
             )
 
 
-@api_buscar_pergunta.route("/", methods=["GET"])
-class BuscarPerguntas(Resource):
+@api_buscar_usuario.route("/", methods=["GET"])
+class BuscarUsuarios(Resource):
 
     def get(self):
         try:
-            response = PerguntaController.buscar_perguntas()
+            response = UsuarioController.buscar_usuarios()
             return Response(
                 json.dumps(response),
                 mimetype="application/json",
