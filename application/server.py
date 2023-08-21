@@ -7,6 +7,14 @@ from application.rest.pergunta.criar_pergunta import api_criar_pergunta
 from application.rest.pergunta.deletar_pergunta import api_deletar_pergunta
 from application.rest.pergunta.buscar_pergunta import api_buscar_pergunta
 from application.rest.pergunta.atualizar_pergunta import api_atualizar_pergunta
+from application.rest.usuario.criar_usuario import api_criar_usuario
+from application.rest.usuario.deletar_usuario import api_deletar_usuario
+from application.rest.usuario.buscar_usuario import api_buscar_usuario
+from application.rest.usuario.atualizar_usuario import api_atualizar_usuario
+from application.rest.resposta.criar_resposta import api_criar_resposta
+from application.rest.resposta.deletar_resposta import api_deletar_resposta
+from application.rest.resposta.buscar_resposta import api_buscar_resposta
+from application.rest.resposta.atualizar_resposta import api_atualizar_resposta
 
 
 
@@ -28,7 +36,14 @@ class ServeApplication:
         api.add_namespace(api_deletar_pergunta)
         api.add_namespace(api_atualizar_pergunta)
         api.add_namespace(api_buscar_pergunta)
-
+        api.add_namespace(api_criar_usuario)
+        api.add_namespace(api_deletar_usuario)
+        api.add_namespace(api_atualizar_usuario)
+        api.add_namespace(api_buscar_usuario)
+        api.add_namespace(api_criar_resposta)
+        api.add_namespace(api_deletar_resposta)
+        api.add_namespace(api_atualizar_resposta)
+        api.add_namespace(api_buscar_resposta)
 
         app.register_blueprint(self._blueprint)
 
