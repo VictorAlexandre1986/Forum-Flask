@@ -15,6 +15,10 @@ from application.rest.resposta.criar_resposta import api_criar_resposta
 from application.rest.resposta.deletar_resposta import api_deletar_resposta
 from application.rest.resposta.buscar_resposta import api_buscar_resposta
 from application.rest.resposta.atualizar_resposta import api_atualizar_resposta
+from application.rest.login.criar_login import api_criar_login
+from application.rest.login.atualizar_login import api_atualizar_login
+from application.rest.login.deletar_login import api_deletar_login
+from application.rest.login.buscar_login import api_buscar_login
 
 
 
@@ -44,7 +48,11 @@ class ServeApplication:
         api.add_namespace(api_deletar_resposta)
         api.add_namespace(api_atualizar_resposta)
         api.add_namespace(api_buscar_resposta)
-
+        api.add_namespace(api_criar_login)
+        api.add_namespace(api_atualizar_login)
+        api.add_namespace(api_deletar_login)
+        api.add_namespace(api_buscar_login)
+        
         app.register_blueprint(self._blueprint)
 
     def create_app(self):
