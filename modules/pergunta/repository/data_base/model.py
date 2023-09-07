@@ -7,6 +7,6 @@ from modules.usuario.repository.data_base.model import Usuario
 class Pergunta(Base):
     __tablename__ = "tb_pergunta"
     
-    pergunta = Column(str, nullable=False)
+    pergunta = Column(String, nullable=False)
     id_usuario = Column(Integer, ForeignKey("tb_usuario.id"))
     usuario = relationship(Usuario, lazy="joined")

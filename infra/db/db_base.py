@@ -14,4 +14,4 @@ class BaseModel:
     
     
     
-base = declarative_base(cls=BaseModel)
+Base = declarative_base(cls=BaseModel)

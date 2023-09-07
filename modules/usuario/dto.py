@@ -1,10 +1,10 @@
 from pydantic import BaseModel
-from typing import Datetime
+from typing import DateTime
 
 
 class UsuarioDTO(BaseModel):
     id: int = None
     Nome_completo : str
-    dt_nasc  : Datetime
+    dt_nasc  : DateTime
     email : str
     celular : str
