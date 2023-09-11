@@ -11,7 +11,7 @@ class UsuarioRepositoryInterface(ABC):
         raise Exception("Método não implementado")
     
     @abstractmethod
-    def buscar_usuario_id(self, id: int):
+    def buscar_usuario_por_id(self, id: int):
         raise Exception("Método não implementado")
     
     @abstractmethod

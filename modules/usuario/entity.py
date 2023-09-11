@@ -1,11 +1,11 @@
 from pydantic import BaseModel
-
+from datetime import datetime
 
 
 class UsuarioEntity(BaseModel):
-    id: int = None
-    Nome_completo : str
-    dt_nasc  : str
-    confirmacao_senha : str
+    id: int | None
+    nome_completo : str
+    dt_nasc  : datetime
     email : str
     celular : str
+    id_login: int

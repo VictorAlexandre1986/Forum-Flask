@@ -11,24 +11,25 @@ class UsuarioRepository(UsuarioRepositoryInterface):
     def _criar_usuario_objeto(self, usuario):
         return UsuarioEntity(
             id=usuario.id,
-            uuid=usuario.uuid,
+            # uuid=usuario.uuid,
             nome_completo=usuario.nome_completo,
             dt_nasc=usuario.dt_nasc,
             email = usuario.email,
             celular = usuario.celular,
+            id_login = usuario.id_login
         )
 
-    def criar_usuario(self, uuid: uuid, nome_completo: str, dt_nasc: datetime, email: str, celular: str):
+    def criar_usuario(self, id: int, nome_completo: str, dt_nasc: datetime, email: str, celular: str, id_login: int):
         try:
             with DBConnectionHandler() as db_connection:
-                novo_usuario = Usuario( uuid=uuid, nome_completo=nome_completo, dt_nasc=dt_nasc, email=email, celular=celular)
+                novo_usuario = Usuario(id=id, nome_completo=nome_completo, dt_nasc=dt_nasc, email=email, celular=celular, id_login=id_login)
                 db_connection.session.add(novo_usuario)
                 db_connection.session.commit()
                 return self._criar_usuario_objeto(novo_usuario)
         except Exception as exc:
             raise exc
 
-    def buscar_pergunta_por_id(self, id: int):
+    def buscar_usuario_por_id(self, id: int):
         with DBConnectionHandler() as db_connection:
             data = db_connection.session.query(Usuario).filter(Usuario.id == id).one_or_none()
             data_resultado = self._criar_usuario_objeto(data)
@@ -45,14 +46,16 @@ class UsuarioRepository(UsuarioRepositoryInterface):
                 )
             return list_usuarios
         
-    def atualizar_usuario(self, id: int, nome_completo: str, dt_nasc: datetime, email: str, celular: str ):
+    def atualizar_usuario(self, id: int, nome_completo: str, dt_nasc: datetime, email: str, celular: str, id_login: int ):
         with DBConnectionHandler() as db_connection:
             data = db_connection.session.query(Usuario).filter(Usuario.id == id).one_or_none()
             if data:
+                data.id=id
                 data.nome_completo = nome_completo
                 data.dt_nasc = dt_nasc
                 data.email = email
-                data.celular = celular 
+                data.celular = celular
+                data.id_login = id_login 
                 db_connection.session.commit()
                 return self._criar_usuario_objeto(data)
             return None

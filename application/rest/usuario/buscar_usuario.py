@@ -78,3 +78,4 @@ class BuscarUsuarios(Resource):
                 mimetype="application/json",
                 status=HTTPStatus.BAD_REQUEST
             )
+            

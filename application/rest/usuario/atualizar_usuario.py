@@ -31,6 +31,7 @@ class AtualizarUsuario(Resource):
             )
 
 
+
         except ValueError as exc:
             return Response(
                 json.dumps({'msg': exc.args[0]}),
@@ -39,6 +40,7 @@ class AtualizarUsuario(Resource):
             )
 
         except Exception as exc:
+            print(exc)
             return Response(
                 json.dumps({"msg": 'Bad request'}),
                 mimetype="application/json",

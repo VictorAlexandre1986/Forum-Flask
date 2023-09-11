@@ -1,7 +1,7 @@
 
 class RespostaUseCase:
     
-    def ___init__(self, resposta_repository):
+    def __init__(self, resposta_repository):
         self.resposta_repository = resposta_repository
         
     
