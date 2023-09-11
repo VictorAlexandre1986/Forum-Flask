@@ -12,3 +12,4 @@ class Pergunta(Base):
     contagem_voto = Column(Integer, nullable=False)
     id_login = Column(Integer, ForeignKey("tb_login.id", ondelete="CASCADE", onupdate="CASCADE"))
     login = relationship('Login', back_populates='pergunta')
+    resposta = relationship('Resposta', back_populates='pergunta')

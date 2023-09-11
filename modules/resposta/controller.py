@@ -10,7 +10,7 @@ class RespostaController:
     def criar_resposta(data: dict):
         data_dto = RespostaDTO(**data)
         repository = RespostaRepository()
-        result = RespostaUseCase(repository).criar_resposta(id = data_dto.id, id_usuario = data_dto.id_usuario, resposta = data_dto.resposta, contagem_voto= data_dto.contagem_voto)
+        result = RespostaUseCase(repository).criar_resposta(id = data_dto.id, id_login = data_dto.id_login, resposta = data_dto.resposta, contagem_voto= data_dto.contagem_voto, id_pergunta= data_dto.id_pergunta)
         return result
     
     @staticmethod
@@ -20,9 +20,9 @@ class RespostaController:
         return result
     
     @staticmethod
-    def buscar_repostas():
+    def buscar_respostas():
         repository = RespostaRepository()
-        result = RespostaUseCase(repository).buscar_repostas()
+        result = RespostaUseCase(repository).buscar_respostas()
         result = [resposta.dict() for resposta in result]
         return result
     
@@ -33,7 +33,7 @@ class RespostaController:
         # resposta = data_dto.resposta
         # contagem_voto = data_dto.contagem_voto   
         repository = RespostaRepository()
-        result = RespostaUseCase(repository).atualizar_resposta(id=id, id_usuario = data_dto.id_usuario, resposta = data_dto.resposta, contagem_voto= data_dto.contagem_voto)
+        result = RespostaUseCase(repository).atualizar_resposta(id=id, id_login = data_dto.id_login, resposta = data_dto.resposta, contagem_voto= data_dto.contagem_voto, id_pergunta= data_dto.id_pergunta)
         return result
 
     @staticmethod

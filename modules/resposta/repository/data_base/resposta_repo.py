@@ -3,7 +3,7 @@ from modules.resposta.repository.data_base.interface import RespostaRepositoryIn
 from modules.resposta.repository.data_base.model import Resposta
 from modules.resposta.entity import RespostaEntity
 from datetime import datetime
-import uuid as uuid
+
 
 
 class RespostaRepository(RespostaRepositoryInterface):
@@ -11,22 +11,23 @@ class RespostaRepository(RespostaRepositoryInterface):
     def _criar_resposta_objeto(self, resposta):
         return RespostaEntity(
             id=resposta.id,
-            uuid=resposta.uuid,
-            id_usuario=resposta.id_usuario,
+            id_login=resposta.id_login,
             resposta=resposta.resposta,
+            contagem_voto=resposta.contagem_voto,    
+            id_pergunta=resposta.id_pergunta
         )
 
-    def criar_resposta(self, uuid: uuid, id_usuario: int, resposta: str, contagem_voto: int):
+    def criar_resposta(self, id: int, id_login: int, resposta: str, contagem_voto: int, id_pergunta: int):
         try:
             with DBConnectionHandler() as db_connection:
-                nova_resposta = Resposta( uuid=uuid, id_usuario=id_usuario, resposta=resposta, contagem_voto=contagem_voto)
+                nova_resposta = Resposta( id=id, id_login=id_login, resposta=resposta, contagem_voto=contagem_voto, id_pergunta=id_pergunta)
                 db_connection.session.add(nova_resposta)
                 db_connection.session.commit()
                 return self._criar_resposta_objeto(nova_resposta)
         except Exception as exc:
             raise exc
 
-    def buscar_reposta_por_id(self, id: int):
+    def buscar_resposta_por_id(self, id: int):
         with DBConnectionHandler() as db_connection:
             data = db_connection.session.query(Resposta).filter(Resposta.id == id).one_or_none()
             data_resultado = self._criar_resposta_objeto(data)
@@ -43,14 +44,17 @@ class RespostaRepository(RespostaRepositoryInterface):
                 )
             return list_respostas
         
-    def atualizar_resposta(self, id: int, id_usuario: int, resposta: str):
+    def atualizar_resposta(self, id: int, id_login: int, resposta: str, contagem_voto: int, id_pergunta: int):
         with DBConnectionHandler() as db_connection:
             data = db_connection.session.query(Resposta).filter(Resposta.id == id).one_or_none()
             if data:
-                data.id_usuario = id_usuario
+                data.id=id
+                data.id_login = id_login
                 data.resposta = resposta
+                data.contagem_voto = contagem_voto
+                data.id_pergunta = id_pergunta
                 db_connection.session.commit()
-                return self._criar_pergunta_objeto(data)
+                return self._criar_resposta_objeto(data)
             return None
 
     def deletar_resposta(self, id: int):

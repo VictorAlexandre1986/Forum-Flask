@@ -39,6 +39,7 @@ class BuscarRespostaPorId(Resource):
 
 
         except Exception as exc:
+            print(exc)
             return Response(
                 json.dumps({"msg": 'Bad request'}),
                 mimetype="application/json",
@@ -51,7 +52,7 @@ class BuscarRespostas(Resource):
 
     def get(self):
         try:
-            response = RespostaController.buscar_repostas()
+            response = RespostaController.buscar_respostas()
             return Response(
                 json.dumps(response),
                 mimetype="application/json",

@@ -11,7 +11,7 @@ class RespostaRepositoryInterface(ABC):
         raise Exception("Método não implementado")
     
     @abstractmethod
-    def buscar_reposta_id(self, id: int):
+    def buscar_resposta_por_id(self, id: int):
         raise Exception("Método não implementado")
     
     @abstractmethod

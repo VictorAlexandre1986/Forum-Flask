@@ -7,8 +7,9 @@ from infra.db import Base
 class Resposta(Base):
     __tablename__ = "tb_resposta"
     
-    titulo = Column(String, nullable=False)
-    pergunta = Column(String, nullable=False)
+    resposta = Column(String, nullable=False)
     contagem_voto = Column(Integer, nullable=False)
     id_login = Column(Integer, ForeignKey("tb_login.id", ondelete="CASCADE", onupdate="CASCADE"))
     login = relationship('Login', back_populates='resposta')
+    id_pergunta = Column(Integer, ForeignKey("tb_pergunta.id", ondelete="CASCADE", onupdate="CASCADE"))
+    pergunta = relationship('Pergunta', back_populates='resposta')
