@@ -2,6 +2,6 @@ from pydantic import BaseModel
 
 class RespostaEntity(BaseModel):
     id: int 
-    id_usuario: int
+    usuario: str
     resposta: str
     contagem_voto: int    
