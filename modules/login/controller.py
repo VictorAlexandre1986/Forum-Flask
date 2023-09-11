@@ -10,7 +10,7 @@ class LoginController:
     def criar_login(data: dict):
         data_dto = LoginDTO(**data)
         repository = LoginRepository()
-        result = LoginUseCase(repository).criar_login(username = data_dto.username, password = data_dto.password)
+        result = LoginUseCase(repository).criar_login(id = data_dto.id, username = data_dto.username, password = data_dto.password)
         return result
     
     @staticmethod

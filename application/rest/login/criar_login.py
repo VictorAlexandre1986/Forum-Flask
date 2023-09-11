@@ -30,6 +30,7 @@ class CriarLogin(Resource):
                 mimetype="application/json",
                 status=HTTPStatus.BAD_REQUEST
             )
+            
 
         except ValueError as exc:
             return Response(

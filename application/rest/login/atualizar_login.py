@@ -24,6 +24,7 @@ class AtualizarLogin(Resource):
             )
 
         except ValidationError as exc:
+            print(exc)
             return Response(
                 exc.json(),
                 mimetype="application/json",
@@ -44,3 +45,4 @@ class AtualizarLogin(Resource):
                 mimetype="application/json",
                 status=HTTPStatus.BAD_REQUEST
             )
+        

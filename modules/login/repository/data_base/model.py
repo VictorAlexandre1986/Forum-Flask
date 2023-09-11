@@ -9,7 +9,7 @@ from infra.db import Base
 class Login(Base):
     __tablename__ = "tb_login"
     
-    id = Column(Integer,  primary_key=True)
+    
     username = Column(String, nullable=False)
     password = Column(String, nullable=False)
     usuario = relationship(Usuario, back_populates='login')

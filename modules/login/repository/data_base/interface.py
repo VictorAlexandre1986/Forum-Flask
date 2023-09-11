@@ -7,15 +7,15 @@ class LoginRepositoryInterface(ABC):
         raise Exception("Método não implementado")
     
     @abstractmethod 
-    def buscar_login(self):
+    def buscar_logins(self):
         raise Exception("Método não implementado")
     
     @abstractmethod
-    def buscar_login_id(self, id: int):
+    def buscar_login_por_id(self, id: int):
         raise Exception("Método não implementado")
     
     @abstractmethod
-    def atualizar_login(self, data: dict):
+    def atualizar_login(self, data: dict, id:int):
         raise Exception("Método não implementado")
     
     @abstractmethod

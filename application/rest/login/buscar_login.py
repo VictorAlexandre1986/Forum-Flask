@@ -44,7 +44,7 @@ class BuscarPerguntaPorId(Resource):
                 mimetype="application/json",
                 status=HTTPStatus.BAD_REQUEST
             )
-
+            
 
 @api_buscar_login.route("/", methods=["GET"])
 class BuscarLogins(Resource):
@@ -78,3 +78,4 @@ class BuscarLogins(Resource):
                 mimetype="application/json",
                 status=HTTPStatus.BAD_REQUEST
             )
+        
