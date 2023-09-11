@@ -10,7 +10,7 @@ class PerguntaController:
     def criar_pergunta(data: dict):
         data_dto = PerguntaDTO(**data)
         repository = PerguntaRepository()
-        result = PerguntaUseCase(repository).criar_pergunta(dt_validity = data_dto.dt_validity, vl_tax = data_dto.vl_tax, st_active= data_dto.st_active, id_coin= data_dto.id_coin)
+        result = PerguntaUseCase(repository).criar_pergunta(id = data_dto.id, id_login = data_dto.id_login, titulo= data_dto.titulo, pergunta= data_dto.pergunta, contagem_voto=data_dto.contagem_voto)
         return result
     
     @staticmethod
@@ -20,19 +20,17 @@ class PerguntaController:
         return result
     
     @staticmethod
-    def buscar_changes():
+    def buscar_perguntas():
         repository = PerguntaRepository()
-        result = PerguntaUseCase(repository).buscar_changes()
-        result = [change.dict() for change in result]
+        result = PerguntaUseCase(repository).buscar_perguntas()
+        result = [pergunta.dict() for pergunta in result]
         return result
     
     @staticmethod
     def atualizar_pergunta(data: dict, id: int):
         data_dto = PerguntaDTO(**data)
-        dt_validity= data_dto.dt_validity
-        date_validity = dt_validity.strftime("%Y-%m-%d %H:%M:%S")
         repository = PerguntaRepository()
-        result = PerguntaUseCase(repository).atualizar_pergunta(id=id, dt_validity = date_validity, vl_tax = data_dto.vl_tax, st_active= data_dto.st_active, id_coin= data_dto.id_coin)
+        result = PerguntaUseCase(repository).atualizar_pergunta(id=id, id_login = data_dto.id_login, titulo = data_dto.titulo, pergunta= data_dto.pergunta, contagem_voto= data_dto.contagem_voto)
         return result
     
     @staticmethod

@@ -5,11 +5,11 @@ class PerguntaUseCase:
         self.pergunta_repository = pergunta_repository
         
     
-    def criar_pergunta(self, username: str, titulo: str ,pergunta: str):
-        return self.pergunta_repository.criar_pergunta(username, titulo, pergunta)
+    def criar_pergunta(self, id:int, id_login: int, titulo: str ,pergunta: str, contagem_voto: int):
+        return self.pergunta_repository.criar_pergunta(id, id_login, titulo, pergunta, contagem_voto)
     
-    def buscar_pergunta(self, titulo: str):
-        return self.pergunta_repository.buscar_pergunta(titulo)
+    def buscar_pergunta_por_id(self, id: int):
+        return self.pergunta_repository.buscar_pergunta_por_id(id)
     
     def buscar_perguntas(self):
         return self.pergunta_repository.buscar_perguntas()
@@ -17,5 +17,5 @@ class PerguntaUseCase:
     def deletar_pergunta(self, id: int):
         return self.pergunta_repository.deletar_pergunta(id)
     
-    def atualizar_pergunta(self, titulo:str, pergunta:str):
-        return self.usuario_repository.atualizar_usuario(titulo, pergunta)
+    def atualizar_pergunta(self, id: int, id_login: int, titulo: str, pergunta:str, contagem_voto: int):
+        return self.pergunta_repository.atualizar_pergunta(id, id_login, titulo, pergunta, contagem_voto)

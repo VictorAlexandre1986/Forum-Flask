@@ -11,15 +11,16 @@ class PerguntaRepository(PerguntaRepositoryInterface):
     def _criar_pergunta_objeto(self, pergunta):
         return PerguntaEntity(
             id=pergunta.id,
-            uuid=pergunta.uuid,
-            usuario=pergunta.id_usuario,
+            id_login=pergunta.id_login,
+            titulo=pergunta.titulo,
             pergunta=pergunta.pergunta,
+            contagem_voto=pergunta.contagem_voto
         )
 
-    def criar_pergunta(self, uuid: uuid, id_usuario: int, pergunta: str):
+    def criar_pergunta(self, id: int, id_login: int, titulo: str, pergunta: str, contagem_voto: int):
         try:
             with DBConnectionHandler() as db_connection:
-                nova_pergunta = Pergunta( uuid=uuid, usuario=id_usuario, pergunta=pergunta)
+                nova_pergunta = Pergunta( id=id, id_login=id_login, titulo=titulo,pergunta=pergunta ,contagem_voto=contagem_voto)
                 db_connection.session.add(nova_pergunta)
                 db_connection.session.commit()
                 return self._criar_pergunta_objeto(nova_pergunta)
@@ -43,12 +44,15 @@ class PerguntaRepository(PerguntaRepositoryInterface):
                 )
             return list_perguntas
         
-    def atualizar_pergunta(self, id: int, id_usuario: int, pergunta: str):
+    def atualizar_pergunta(self, id: int, id_login: int, titulo: str, pergunta: str, contagem_voto: int):
         with DBConnectionHandler() as db_connection:
             data = db_connection.session.query(Pergunta).filter(Pergunta.id == id).one_or_none()
             if data:
-                data.id_usuario = id_usuario
+                id=id
+                data.id_login = id_login
+                data.titulo = titulo
                 data.pergunta = pergunta
+                data.contagem_voto = contagem_voto
                 db_connection.session.commit()
                 return self._criar_pergunta_objeto(data)
             return None

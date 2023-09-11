@@ -40,7 +40,6 @@ class AtualizarUsuario(Resource):
             )
 
         except Exception as exc:
-            print(exc)
             return Response(
                 json.dumps({"msg": 'Bad request'}),
                 mimetype="application/json",
