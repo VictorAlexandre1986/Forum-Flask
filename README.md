@@ -25,4 +25,14 @@ pip install -r requirements.txt
   <li>Sqlite</li>
 </ul>
 
-Obs:É necessário fazer os models e a migração via alembic para gerar o banco de dados, é necessário também configurar alembic.ini
+## Para rodar o alembic caso seja necessário novas migrações:
+
+```
+alembic revision --autogenerate -m "titulo da migração"
+```
+
+```
+ alembic upgrade head
+```
+
+
