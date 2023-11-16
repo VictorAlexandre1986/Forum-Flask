@@ -28,7 +28,7 @@ pip install -r requirements.txt
 ## Para rodar o alembic caso seja necessário novas migrações:
 
 ```
-alembic init nome_do_seu_projetoalembic
+alembic init nome_do_seu_projeto
 ```
 
 ```
